@@ -17,8 +17,56 @@
 
     </header>
     <main>
-
-
+        <section class="container">
+            <img src="https://via.placeholder.com/150" onclick="clickTracker() " alt="click on me img">
+            <span>Clicks:<span id="build-total"></span></span>
+        </section>
+        <br>
+        <section class="container" id="click-upgrades">
+            <div class="row">
+                <div class="col-2 d-flex flex-column">
+                    <img src="https://via.placeholder.com/100" alt="">
+                    <button id="buy-drill" onclick="buyDrill()">buy Drill</button>
+                    <span>Cost:10</span>
+                    <span>Total:<span id="drill-total"></span></span>
+                </div>
+                <div class="col-2 d-flex flex-column">
+                    <img src="https://via.placeholder.com/100" alt="">
+                    <button id="buy-drill" onclick="buyChopSaw()">buy Chop Saw</button>
+                    <span>Cost:20</span>
+                    <span>Total:<span id="chop-saw-total"></span></span>
+                </div>
+                <div class="col-2 d-flex flex-column">
+                    <img src="https://via.placeholder.com/100" alt="">
+                    <button id="buy-drill" onclick="buyTableSaw()">buy Table Saw</button>
+                    <span>Cost:40</span>
+                    <span>Total:<span id="table-saw-total"></span></span>
+                </div>
+            </div>
+        </section>
+        <br>
+        <section class="container" id="automatic-upgrades">
+            <div class="row">
+                <div class="col-2 d-flex flex-column">
+                    <img src="https://via.placeholder.com/100" alt="">
+                    <button id="buy-drill" onclick="buyEmployee()">Hire Employee</button>
+                    <span>Cost:100</span>
+                    <span>Total:<span id="employee-total"></span></span>
+                </div>
+                <div class="col-2 d-flex flex-column">
+                    <img src="https://via.placeholder.com/100" alt="">
+                    <button id="buy-drill" onclick="buyCnc()">buy CNC Machine</button>
+                    <span>Cost:200</span>
+                    <span>Total:<span id="cnc-total"></span></span>
+                </div>
+                <div class="col-2 d-flex flex-column">
+                    <img src="https://via.placeholder.com/100" alt="">
+                    <button id="buy-drill" onclick="buyWorkShop()">buy Work Shop</button>
+                    <span>Cost:400</span>
+                    <span>Total:<span id="work-shop-total"></span></span>
+                </div>
+            </div>
+        </section>
     </main>
     <footer>
 

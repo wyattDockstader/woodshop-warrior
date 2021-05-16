@@ -1,41 +1,49 @@
-var units = 100;
+var units = 0;
 
 
-updateTotal()
+
+
 
 var clickUpgrades = {
     drill: {
+        name: "Drill",
         price: 10,
         quantity: 0,
         multiplier: 2,
+        imgURL: "https://via.placeholder.com/100"
     },
     chopSaw: {
+        name: "Chop Saw",
         price: 20,
         quantity: 0,
-        multiplier: 4
+        multiplier: 4,
+        imgURL: "https://via.placeholder.com/101"
     },
     tableSaw: {
+        name: "Table Saw",
         price: 40,
         quantity: 0,
-        multiplier: 8
+        multiplier: 10,
+        imgURL: "https://via.placeholder.com/102"
     }
-};
+}
 var automaticUpgrades = {
     employee: {
         price: 100,
         quantity: 0,
-        multiplier: 20
+        multiplier: 2
     },
     cnc: {
         price: 200,
         quantity: 0,
-        multiplier: 40
+        multiplier: 4
     },
     workShop: {
         price: 400,
         quantity: 0,
-        multiplier: 80
+        multiplier: 10
     },
+
 }
 function build() {
     units += 1
@@ -44,12 +52,40 @@ function build() {
 function updateTotal() {
     document.getElementById("build-total").innerText = units
 }
+function drawClickUpgrades() {
+    let template = ''
+    for (let key in clickUpgrades) {
+        let tool = clickUpgrades[key]
+        template += `
+        <div class="col-2 d-flex flex-column">
+        <img class="img-fluid" 
+            src="${tool.imgUrl}">
+        <button id="buy-drill" onclick="buyDrill()">buy ${tool.name}</button>
+        <span>Price: $<span id="dri"></span>${tool.price}</span>
+        <span>Productivity: X<span>${tool.multiplier}</span></span>
+        <span>Total: <span id="drill-total"></span>${tool.quantity}</span>
+        </div>`
+    }
+    document.getElementById('click-upgrades').innerHTML = template
+}
+//     for (let key in toppings){
+//         let topping = toppings[key]
+//         template += `
+//           <div class="col-4 text-center">
+//             <img class="img-fluid"
+//               src="${topping.imgUrl}"
+//               alt="">
+//             <button class="btn btn-primary btn-block" onclick="addItem('${topping.name}')"> ${topping.name}</button>
+//             <p>$${topping.price.toFixed(2)}</p>
+//           </div>`
+// 
 function buyDrill() {
-    if (units >= 10) {
+    if (units >= clickUpgrades.drill.price) {
         clickUpgrades.drill.quantity += 1
-        units -= 10
+        units -= clickUpgrades.drill.price
+        clickUpgrades.drill.price *= 3
+        drawClickUpgrades()
         updateTotal()
-        document.getElementById("drill-total").innerText = clickUpgrades.drill.quantity
         console.log("purchased drill")
     }
 }
@@ -100,15 +136,15 @@ function collectAutoUpgrades() {
     let collectAutoElem = (automaticUpgrades.employee.quantity * automaticUpgrades.employee.multiplier) + (automaticUpgrades.cnc.quantity * automaticUpgrades.cnc.multiplier) + (automaticUpgrades.workShop.quantity * automaticUpgrades.workShop.multiplier)
     autoMultiplyer(collectAutoElem)
 }
-function autoMultiplyer(value)
-for (let i = 0; i < value; i++) {
-    build()
+function autoMultiplyer(value) {
+    for (let i = 0; i < value; i++) {
+        build()
 
+    }
 }
-// function startInterval() {
-//     let interval = setInterval(collectAutoUpgrades, 3000)
-// }
-
+function startInterval() {
+    let interval = setInterval(collectAutoUpgrades, 3000)
+}
 
 function clickTracker() {
     let clickTrackerElem = (clickUpgrades.drill.quantity * clickUpgrades.drill.multiplier) + (clickUpgrades.chopSaw.quantity * clickUpgrades.chopSaw.multiplier) + (clickUpgrades.tableSaw.quantity * clickUpgrades.tableSaw.multiplier)
@@ -124,3 +160,23 @@ function clickMultiplier(value) {
     }
 
 }
+startInterval()
+drawClickUpgrades()
+
+
+
+
+
+
+
+
+
+
+
+
+            // function updatePrice(id) {
+            //     document.getElementById(id).innerText = clickUpgrades.drill.price
+            // }
+            // function updateQuantity() {
+            //     document.getElementById("drill-total").innerText = clickUpgrades.drill.quantity
+            // }

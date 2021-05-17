@@ -115,6 +115,8 @@ function buyDrill() {
         drawClickUpgrades()
         updateTotal()
         console.log("purchased drill")
+    } else {
+        window.alert("you broke")
     }
 }
 function buyChopSaw() {
@@ -199,46 +201,3 @@ updateTotal()
 startInterval()
 drawClickUpgrades()
 drawAutomaticUpgrades()
-
-
-
-
-
-
-
-
-
-
-
-
-            // function updatePrice(id) {
-            //     document.getElementById(id).innerText = clickUpgrades.drill.price
-            // }
-            // function updateQuantity() {
-            //     document.getElementById("drill-total").innerText = clickUpgrades.drill.quantity
-            // }
-
-
-
-
-
-
-            // let toppings = {
-            //     noodles:{
-            //     name: 'noodles',
-            //      price: 3.5977676,
-            //      imgUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiaKdZemPZ4LPrWuMXqDvtbYLGupo9kxjq-mTvhiae9B0HAw00KqFm5ah75tThXYAT6O2Gdr1_&usqp=CAc'
-            //     },
-            //     function drawToppings(){
-            //         let template = ''
-
-            //         for (let key in toppings){
-            //           let topping = toppings[key]
-            //           template += `
-            //             <div class="col-4 text-center">
-            //               <img class="img-fluid"
-            //                 src="${topping.imgUrl}"
-            //                 alt="">
-            //               <button class="btn btn-primary btn-block" onclick="addItem('${topping.name}')"> ${topping.name}</button>
-            //               <p>$${topping.price.toFixed(2)}</p>
-            //             </div>`

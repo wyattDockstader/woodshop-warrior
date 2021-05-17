@@ -1,5 +1,7 @@
 
-
+body.master{
+    font-family: 'Pattaya', sans-serif;
+}
 main{
     background-image: url(https://cdn.vox-cdn.com/uploads/chorus_asset/file/19885051/ASK2__1_.0.jpg);
     background-position: center;

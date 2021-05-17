@@ -1,0 +1,41 @@
+
+
+main{
+    background-image: url(https://cdn.vox-cdn.com/uploads/chorus_asset/file/19885051/ASK2__1_.0.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 2rem;
+}
+div.card{
+   background-color: #204e36;
+    margin: 2 rem;
+    padding: 1rem;
+    border-radius: 40px;
+}
+h1.buildCounter{
+    /* border: 5px solid #204e36; */
+    border-radius: 40px;
+    padding: 1rem;
+}
+.card-img{
+    
+    display: flex;
+    margin-top: 2rem;
+    padding-left: 1 rem;
+}
+.bg-theme{
+    background-color: #204e36;
+}
+.sawBlade{
+    border-radius: 195px;
+    animation: rotation 6s infinite linear;
+}
+@keyframes rotation{
+    from{
+      transform: rotate(0deg);
+    }
+    to{
+      transform: rotate(359deg);
+    }
+  }

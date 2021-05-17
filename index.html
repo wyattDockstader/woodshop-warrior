@@ -13,17 +13,26 @@
 </head>
 
 <body>
-    <header>
-
+    <header class="container-fluid bg-theme text-light">
+        <div class="row justify-content-center">
+            <h1>Wood Shop Warrior</h1>
+        </div>
     </header>
     <main>
-        <section class="container">
-            <img src="https://via.placeholder.com/150" onclick="clickTracker() " alt="click on me img">
-            <span>Units Built: <span id="build-total"></span></span>
+        <section class="container-fluid mt-0  p-3 text-light">
+            <div class="row justify-content-center">
+                <img class="sawBlade"
+                    src="https://www.toolstoday.com/media/catalog/product/cache/2d9ebae04264cf3f1235861a641f00fa/m/d/md24-480.jpg"
+                    onclick="clickTracker() " alt="click on me img">
+            </div>
+            <div class="row justify-content-center">
+                <h1 class="buildCounter bg-theme">Units Built: <span id="build-total"></span>
+                </h1>
+            </div>
         </section>
         <br>
-        <section class="container">
-            <div class="row" id="click-upgrades">
+        <section class="container-fluid">
+            <div class="click-upgrade row justify-content-center" id="click-upgrades">
                 <!-- <div class="col-2 d-flex flex-column">
                     <img src="https://via.placeholder.com/100" alt="">
                     <button id="buy-drill" onclick="buyDrill()">buy Drill</button>
@@ -48,9 +57,9 @@
             </div>
         </section>
         <br>
-        <section class="container" id="automatic-upgrades">
-            <div class="row">
-                <div class="col-2 d-flex flex-column">
+        <section class="auto-upgrade container-fluid">
+            <div class="row justify-content-center" id="automatic-upgrades">
+                <!-- <div class="col-2 d-flex flex-column">
                     <img src="https://via.placeholder.com/100" alt="">
                     <button id="buy-employee" onclick="buyEmployee()">Hire Employee</button>
                     <span>Cost: 100</span>
@@ -70,28 +79,14 @@
                     <span>Cost: 400</span>
                     <span>will produce 10 units</span>
                     <span>Total: <span id="work-shop-total"></span></span>
-                </div>
+                </div> -->
             </div>
         </section>
     </main>
-    <footer>
+    <footer class="bg-theme text-light text-center p-5">
+        <p>This website was made with love, don't judge.</p>
 
     </footer>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <script src="app.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

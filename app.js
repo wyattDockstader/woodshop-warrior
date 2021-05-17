@@ -7,41 +7,53 @@ var units = 0;
 var clickUpgrades = {
     drill: {
         name: "Drill",
+        id: "Drill",
         price: 10,
         quantity: 0,
         multiplier: 2,
-        imgURL: "https://via.placeholder.com/100"
+        imgUrl: 'https://www.northerntool.com/images/product/2000x2000/256/25623_2000x2000.jpg'
     },
     chopSaw: {
         name: "Chop Saw",
+        id: "ChopSaw",
         price: 20,
         quantity: 0,
         multiplier: 4,
-        imgURL: "https://via.placeholder.com/101"
+        imgUrl: "https://www.northerntool.com/images/product/2000x2000/307/30722_2000x2000.jpg"
     },
     tableSaw: {
         name: "Table Saw",
+        id: "TableSaw",
         price: 40,
         quantity: 0,
         multiplier: 10,
-        imgURL: "https://via.placeholder.com/102"
+        imgUrl: "https://www.northerntool.com/images/product/2000x2000/846/84632_2000x2000.jpg"
     }
 }
 var automaticUpgrades = {
     employee: {
-        price: 100,
+        name: "Employee",
+        id: "Employee",
+        price: 50,
         quantity: 0,
-        multiplier: 2
+        multiplier: 2,
+        imgUrl: "https://www.northerntool.com/images/product/2000x2000/177/177505_2000x2000.jpg"
     },
     cnc: {
+        name: "CNC",
+        id: "Cnc",
         price: 200,
         quantity: 0,
-        multiplier: 4
+        multiplier: 4,
+        imgUrl: "https://www.northerntool.com/images/product/2000x2000/846/84669_2000x2000.jpg"
     },
     workShop: {
+        name: "Work Shop",
+        id: "WorkShop",
         price: 400,
         quantity: 0,
-        multiplier: 10
+        multiplier: 10,
+        imgUrl: "http://static1.squarespace.com/static/58dec31debbd1ab87bd5fbc1/t/5c352dfc21c67c3150f439b1/1546989081559/bryant+exterior+2sm.jpg?format=1500w"
     },
 
 }
@@ -57,28 +69,44 @@ function drawClickUpgrades() {
     for (let key in clickUpgrades) {
         let tool = clickUpgrades[key]
         template += `
-        <div class="col-2 d-flex flex-column">
-        <img class="img-fluid" 
-            src="${tool.imgUrl}">
-        <button id="buy-drill" onclick="buyDrill()">buy ${tool.name}</button>
-        <span>Price: $<span id="dri"></span>${tool.price}</span>
-        <span>Productivity: X<span>${tool.multiplier}</span></span>
-        <span>Total: <span id="drill-total"></span>${tool.quantity}</span>
-        </div>`
+        <div class="card col-12 col-sm-6 col-lg-3 d-flex bg-theme text-light" style="width: 5rem;">
+            <img class="card-img p-4" src="${tool.imgUrl}" alt="Card image cap">
+        <div class="card-body">
+            <span class="card-text">Price:<span id="dri"></span>${tool.price} units</span>
+            <br>
+            <span>Productivity: X<span>${tool.multiplier}</span></span>
+            <br>
+            <span>Total: <span></span>${tool.quantity}</span>
+            <br>
+    <a href="#" class=" btn btn-primary" onclick="buy${tool.id}()">buy ${tool.name}</a>
+  </div>
+</div>`
     }
     document.getElementById('click-upgrades').innerHTML = template
 }
-//     for (let key in toppings){
-//         let topping = toppings[key]
-//         template += `
-//           <div class="col-4 text-center">
-//             <img class="img-fluid"
-//               src="${topping.imgUrl}"
-//               alt="">
-//             <button class="btn btn-primary btn-block" onclick="addItem('${topping.name}')"> ${topping.name}</button>
-//             <p>$${topping.price.toFixed(2)}</p>
-//           </div>`
-// 
+function drawAutomaticUpgrades() {
+    let template = ''
+    for (let key in automaticUpgrades) {
+        let tool = automaticUpgrades[key]
+        template += `
+        <div class="card col-12 col-sm-6 col-lg-3 d-flex text-light" style="width: 5rem;">
+            <img class="card-img p-5" src="${tool.imgUrl}" alt="Card image cap">
+        <div class="card-body">
+            <span class="card-text">Price:<span id="dri"></span>${tool.price} units</span>
+            <br>
+            <span>Productivity: X<span>${tool.multiplier}</span></span>
+            <br>
+            <span>Total: <span></span>${tool.quantity}</span>
+            <br>
+    <a href="#" class="btn btn-primary" onclick="buy${tool.id}()">buy ${tool.name}</a>
+  </div>
+</div>`
+    }
+    document.getElementById('automatic-upgrades').innerHTML = template
+}
+
+
+
 function buyDrill() {
     if (units >= clickUpgrades.drill.price) {
         clickUpgrades.drill.quantity += 1
@@ -90,45 +118,52 @@ function buyDrill() {
     }
 }
 function buyChopSaw() {
-    if (units >= 20) {
+    if (units >= clickUpgrades.chopSaw.price) {
         clickUpgrades.chopSaw.quantity += 1
-        units -= 20
+        units -= clickUpgrades.chopSaw.price
+        clickUpgrades.chopSaw.price *= 3
+        drawClickUpgrades()
         updateTotal()
         console.log("purchased chop saw")
     }
 }
 function buyTableSaw() {
-    if (units >= 40) {
+    if (units >= clickUpgrades.tableSaw.price) {
         clickUpgrades.tableSaw.quantity += 1
-        units -= 40
+        units -= clickUpgrades.tableSaw.price
+        clickUpgrades.tableSaw.price *= 3
+        drawClickUpgrades()
         updateTotal()
         console.log("purchased table saw")
     }
 }
 function buyEmployee() {
-    if (units >= 100) {
+    if (units >= automaticUpgrades.employee.price) {
         automaticUpgrades.employee.quantity += 1
-        units -= 100
+        units -= automaticUpgrades.employee.price
+        automaticUpgrades.employee.price *= 3
+        drawAutomaticUpgrades()
         updateTotal()
-        document.getElementById("employee-total").innerText = automaticUpgrades.employee.quantity
         console.log("hired employee")
     }
 }
 function buyCnc() {
-    if (units >= 200) {
+    if (units >= automaticUpgrades.cnc.price) {
         automaticUpgrades.cnc.quantity += 1
-        units -= 200
+        units -= automaticUpgrades.cnc.price
+        automaticUpgrades.cnc.price *= 3
+        drawAutomaticUpgrades()
         updateTotal()
-        document.getElementById("cnc-total").innerText = automaticUpgrades.cnc.quantity
         console.log("purchased cnc")
     }
 }
 function buyWorkShop() {
-    if (units >= 400) {
+    if (units >= automaticUpgrades.workShop.price) {
         automaticUpgrades.workShop.quantity += 1
-        units -= 400
+        units -= automaticUpgrades.workShop.price
+        automaticUpgrades.workShop.price *= 3
+        drawAutomaticUpgrades()
         updateTotal()
-        document.getElementById("work-shop-total").innerText = automaticUpgrades.workShop.quantity
         console.log("purchased work shop")
     }
 }
@@ -160,8 +195,10 @@ function clickMultiplier(value) {
     }
 
 }
+updateTotal()
 startInterval()
 drawClickUpgrades()
+drawAutomaticUpgrades()
 
 
 
@@ -180,3 +217,28 @@ drawClickUpgrades()
             // function updateQuantity() {
             //     document.getElementById("drill-total").innerText = clickUpgrades.drill.quantity
             // }
+
+
+
+
+
+
+            // let toppings = {
+            //     noodles:{
+            //     name: 'noodles',
+            //      price: 3.5977676,
+            //      imgUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiaKdZemPZ4LPrWuMXqDvtbYLGupo9kxjq-mTvhiae9B0HAw00KqFm5ah75tThXYAT6O2Gdr1_&usqp=CAc'
+            //     },
+            //     function drawToppings(){
+            //         let template = ''
+
+            //         for (let key in toppings){
+            //           let topping = toppings[key]
+            //           template += `
+            //             <div class="col-4 text-center">
+            //               <img class="img-fluid"
+            //                 src="${topping.imgUrl}"
+            //                 alt="">
+            //               <button class="btn btn-primary btn-block" onclick="addItem('${topping.name}')"> ${topping.name}</button>
+            //               <p>$${topping.price.toFixed(2)}</p>
+            //             </div>`
